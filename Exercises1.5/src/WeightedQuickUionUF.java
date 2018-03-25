@@ -1,19 +1,24 @@
-public class QuickFindUF {
+public class WeightedQuickUionUF {
     private int[] id;
     private int count;
+    private int[] sz;
 
-    public QuickFindUF(int N) {
+    public WeightedQuickUionUF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
+        }
+        sz = new int[N];
+        for (int i = 0; i < N; i++) {
+            sz[i] = 1;
         }
     }
 
     public static void main(String[] args) {
         int[] a = In.readInts(args[0]);
         int N = a[0];
-        QuickFindUF uf = new QuickFindUF(N);
+        WeightedQuickUionUF uf = new WeightedQuickUionUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
             int q = a[i + 1];
@@ -25,17 +30,22 @@ public class QuickFindUF {
     }
 
     public void union(int p, int q) {
-        int pid = find(p);
-        int qid = find(q);
-        if (pid == qid) return;
-        for (int i = 0; i < id.length; i++) {
-            if (id[i] == pid) id[i] = qid;
+        int i = find(p);
+        int j = find(q);
+        if (i == j) return;
+        if (sz[i] < sz[j]) {
+            id[i] = j;
+            sz[j] += sz[i];
+        } else {
+            id[j] = i;
+            sz[i] += sz[j];
         }
         count--;
     }
 
     public int find(int p) {
-        return id[p];
+        while (p != id[p]) p = id[p];
+        return p;
     }
 
     public boolean connected(int p, int q) {

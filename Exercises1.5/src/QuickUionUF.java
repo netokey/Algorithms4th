@@ -1,8 +1,8 @@
-public class QuickFindUF {
+public class QuickUionUF {
     private int[] id;
     private int count;
 
-    public QuickFindUF(int N) {
+    public QuickUionUF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
@@ -13,7 +13,7 @@ public class QuickFindUF {
     public static void main(String[] args) {
         int[] a = In.readInts(args[0]);
         int N = a[0];
-        QuickFindUF uf = new QuickFindUF(N);
+        QuickUionUF uf = new QuickUionUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
             int q = a[i + 1];
@@ -25,17 +25,16 @@ public class QuickFindUF {
     }
 
     public void union(int p, int q) {
-        int pid = find(p);
-        int qid = find(q);
-        if (pid == qid) return;
-        for (int i = 0; i < id.length; i++) {
-            if (id[i] == pid) id[i] = qid;
-        }
+        int pRoot = find(p);
+        int qRoot = find(q);
+        if (pRoot == qRoot) return;
+        id[pRoot] = qRoot;
         count--;
     }
 
     public int find(int p) {
-        return id[p];
+        while (p != id[p]) p = id[p];
+        return p;
     }
 
     public boolean connected(int p, int q) {
