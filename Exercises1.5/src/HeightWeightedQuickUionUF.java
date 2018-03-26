@@ -1,17 +1,17 @@
-public class WeightedQuickUionUF {
+public class HeightWeightedQuickUionUF {
     private int[] id;
     private int count;
-    private int[] sz;
+    private int[] ht;
 
-    public WeightedQuickUionUF(int N) {
+    public HeightWeightedQuickUionUF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
         }
-        sz = new int[N];
+        ht = new int[N];
         for (int i = 0; i < N; i++) {
-            sz[i] = 1;
+            ht[i] = 1;
         }
     }
 
@@ -19,7 +19,7 @@ public class WeightedQuickUionUF {
         int[] a = In.readInts(args[0]);
         int N = a[0];
         long start = System.currentTimeMillis();
-        WeightedQuickUionUF uf = new WeightedQuickUionUF(N);
+        HeightWeightedQuickUionUF uf = new HeightWeightedQuickUionUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
             int q = a[i + 1];
@@ -35,12 +35,13 @@ public class WeightedQuickUionUF {
         int i = find(p);
         int j = find(q);
         if (i == j) return;
-        if (sz[i] < sz[j]) {
+        if (ht[i]==ht[j]) {
+            id[i]=j;
+            ht[j]++;
+        }else if (ht[i] < ht[j]) {
             id[i] = j;
-            sz[j] += sz[i];
         } else {
             id[j] = i;
-            sz[i] += sz[j];
         }
         count--;
     }

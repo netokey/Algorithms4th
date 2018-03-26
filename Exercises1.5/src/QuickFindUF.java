@@ -13,6 +13,7 @@ public class QuickFindUF {
     public static void main(String[] args) {
         int[] a = In.readInts(args[0]);
         int N = a[0];
+        long start = System.currentTimeMillis();
         QuickFindUF uf = new QuickFindUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
@@ -22,6 +23,7 @@ public class QuickFindUF {
             StdOut.println(p + " " + q);
         }
         StdOut.println(uf.count() + " components");
+        StdOut.println("Cost time: " + (System.currentTimeMillis() - start) / 1000.0);
     }
 
     public void union(int p, int q) {

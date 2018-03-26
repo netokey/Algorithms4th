@@ -1,9 +1,9 @@
-public class WeightedQuickUionUF {
+public class PathCompressedWeightedQuickUionUF {
     private int[] id;
     private int count;
     private int[] sz;
 
-    public WeightedQuickUionUF(int N) {
+    public PathCompressedWeightedQuickUionUF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
@@ -19,7 +19,7 @@ public class WeightedQuickUionUF {
         int[] a = In.readInts(args[0]);
         int N = a[0];
         long start = System.currentTimeMillis();
-        WeightedQuickUionUF uf = new WeightedQuickUionUF(N);
+        PathCompressedWeightedQuickUionUF uf = new PathCompressedWeightedQuickUionUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
             int q = a[i + 1];
@@ -46,8 +46,15 @@ public class WeightedQuickUionUF {
     }
 
     public int find(int p) {
+        int orgp = p;
         while (p != id[p]) p = id[p];
-        return p;
+        int rootP = p;
+        while (orgp != id[orgp]) {
+            int curp = orgp;
+            orgp = id[orgp];
+            id[curp] = rootP;
+        }
+        return rootP;
     }
 
     public boolean connected(int p, int q) {

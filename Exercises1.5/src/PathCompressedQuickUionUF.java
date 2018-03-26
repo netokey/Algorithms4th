@@ -1,17 +1,12 @@
-public class WeightedQuickUionUF {
+public class PathCompressedQuickUionUF {
     private int[] id;
     private int count;
-    private int[] sz;
 
-    public WeightedQuickUionUF(int N) {
+    public PathCompressedQuickUionUF(int N) {
         count = N;
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
-        }
-        sz = new int[N];
-        for (int i = 0; i < N; i++) {
-            sz[i] = 1;
         }
     }
 
@@ -19,7 +14,7 @@ public class WeightedQuickUionUF {
         int[] a = In.readInts(args[0]);
         int N = a[0];
         long start = System.currentTimeMillis();
-        WeightedQuickUionUF uf = new WeightedQuickUionUF(N);
+        PathCompressedQuickUionUF uf = new PathCompressedQuickUionUF(N);
         for (int i = 1; i < a.length - 1; i += 2) {
             int p = a[i];
             int q = a[i + 1];
@@ -32,22 +27,23 @@ public class WeightedQuickUionUF {
     }
 
     public void union(int p, int q) {
-        int i = find(p);
-        int j = find(q);
-        if (i == j) return;
-        if (sz[i] < sz[j]) {
-            id[i] = j;
-            sz[j] += sz[i];
-        } else {
-            id[j] = i;
-            sz[i] += sz[j];
-        }
+        int pRoot = find(p);
+        int qRoot = find(q);
+        if (pRoot == qRoot) return;
+        id[pRoot] = qRoot;
         count--;
     }
 
     public int find(int p) {
+        int orgp = p;
         while (p != id[p]) p = id[p];
-        return p;
+        int rootP = p;
+        while (orgp != id[orgp]) {
+            int curp = orgp;
+            orgp = id[orgp];
+            id[curp] = rootP;
+        }
+        return rootP;
     }
 
     public boolean connected(int p, int q) {
