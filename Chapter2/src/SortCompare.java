@@ -10,6 +10,7 @@ public class SortCompare {
         if (alg.equals("MySentinel")) EX2_1_24_MySolution.sort(a);
         if (alg.equals("OfficialSentinel")) EX2_1_24_MySolution.sort(a);
         if (alg.equals("HalfInsertion")) EX2_1_25.sort(a);
+        if (alg.equals("NewIncrementShell")) EX2_1_29.sort(a);
         return timer.elapsedTime();
     }
 
