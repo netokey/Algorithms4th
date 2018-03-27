@@ -1,0 +1,1 @@
+Use selection sort. Beacause the number of exchanges is linear.

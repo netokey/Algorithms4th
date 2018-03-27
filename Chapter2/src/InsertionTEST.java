@@ -1,7 +1,10 @@
 /*
 This is a template for sorting algorithms
  */
-public class Insertion {
+public class InsertionTEST {
+    public static int compareTimes;
+    public static int exchangeTimes;
+
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
@@ -12,6 +15,7 @@ public class Insertion {
     }
 
     private static boolean less(Comparable v, Comparable w) {
+        compareTimes++;
         return v.compareTo(w) < 0;
     }
 
@@ -19,6 +23,7 @@ public class Insertion {
         Comparable t = a[i];
         a[i] = a[j];
         a[j] = t;
+        exchangeTimes++;
         //show(a);
     }
 
@@ -39,6 +44,8 @@ public class Insertion {
     public static void main(String[] args) {
         String[] a = In.readStrings(args[0]);
         sort(a);
+        StdOut.println("compareTimes:" + compareTimes);
+        StdOut.println("exchangeTimes:" + exchangeTimes);
         assert isSorted(a);
         show(a);
     }

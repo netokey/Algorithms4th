@@ -1,13 +1,32 @@
 /*
 This is a template for sorting algorithms
  */
-public class Insertion {
+public class EX2_1_25 {
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 1; i < N; i++) {
+
+        // put smallest element in position to serve as sentinel
+        int exchanges = 0;
+        for (int i = N - 1; i > 0; i--) {
+            if (less(a[i], a[i - 1])) {
+                exch(a, i, i - 1);
+                exchanges++;
+            }
+        }
+        if (exchanges == 0) return;
+
+        for (int i = 2; i < N; i++) {
+            Comparable v = a[i];
+            int j = i;
+            while (less(v, a[j - 1])) {
+                a[j] = a[j - 1];
+                j--;
+            }
+            a[j] = v;
+            /*
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
                 exch(a, j, j - 1);
-            }
+            }*/
         }
     }
 

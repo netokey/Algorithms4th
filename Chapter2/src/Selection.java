@@ -21,6 +21,7 @@ public class Selection {
         Comparable t = a[i];
         a[i] = a[j];
         a[j] = t;
+        //show(a);
     }
 
     private static void show(Comparable[] a) {

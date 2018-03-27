@@ -1,0 +1,2 @@
+The maximum number of exchanges during selection sort should be N-1. For example:Z A B C D E F ...Y
+The total exchanges of selection sor is N, so the average number of exchanges should be N/N=1.

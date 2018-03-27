@@ -1,0 +1,3 @@
+For an N items array in reverse order, selection sort uses N(N-1)/2 compares and N exchanges.
+For an N items array in reverse order, insertion sort uses N(N-1)/2 compares and N(N-1)/2 exchanges.
+So, selection sort is faster.

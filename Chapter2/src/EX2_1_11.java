@@ -1,12 +1,26 @@
 /*
-This is a template for sorting algorithms
+This is Shell Sort
  */
-public class Insertion {
+public class EX2_1_11 {
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
+        int h1 = 1;
+        int n1 = 1;
+        while (h1 < N / 3) {
+            h1 = 3 * h1 + 1;
+            n1++;
+        }
+        int[] increments = new int[n1];
+        increments[0] = 1;
+        for (int i = 1; i < increments.length - 1; i++) {
+            increments[i] = 3 * increments[i - 1] + 1;
+        }
+        for (int k = increments.length - 1; k >= 0; k--) {
+            int h = increments[k];
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
+                    exch(a, j, j - h);
+                }
             }
         }
     }
@@ -19,7 +33,7 @@ public class Insertion {
         Comparable t = a[i];
         a[i] = a[j];
         a[j] = t;
-        //show(a);
+        show(a);
     }
 
     private static void show(Comparable[] a) {

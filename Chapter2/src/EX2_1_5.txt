@@ -1,0 +1,1 @@
+The example of an array of N items is 1,2,3,....,N-2,N-1,N

@@ -1,0 +1,4 @@
+Because insertion sort uses N-1 compares and 0 exchange when in best case, and the best case uses N(N-1)/2 compares and
+N(N-1)/2 exchanges.
+When sorting on a random ordered array where elements have only one of three values, the running time is still quadratic,
+but it should be shorter than when sorting on a normal array.

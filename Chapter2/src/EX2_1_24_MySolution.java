@@ -1,11 +1,16 @@
 /*
 This is a template for sorting algorithms
  */
-public class Insertion {
+public class EX2_1_24_MySolution {
     public static void sort(Comparable[] a) {
         int N = a.length;
+        int min = 0;
         for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
+            if (less(a[i], a[min])) min = i;
+        }
+        exch(a, 0, min);
+        for (int i = 2; i < N; i++) {
+            for (int j = i; less(a[j], a[j - 1]); j--) {
                 exch(a, j, j - 1);
             }
         }

@@ -1,13 +1,21 @@
 /*
-This is a template for sorting algorithms
+This is Shell Sort
  */
-public class Insertion {
+public class Shell {
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
+        int h = 1;
+        while (h < N / 3) h = 3 * h + 1;//1,4,13,40,121,364,1093...
+        while (h >= 1) {
+            //StdOut.println("h = " + h + ":\t0 1 2 3 4 5 6 7 8 9 A B C D E F");
+            for (int i = h; i < N; i++) {
+                // insert a[i] into a[i-h],a[i-2*h],a[i-3*h]
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
+                    exch(a, j, j - h);
+                    //StdOut.printf(j + "\t" + (j - h) + ":\t");
+                }
             }
+            h = h / 3;
         }
     }
 
