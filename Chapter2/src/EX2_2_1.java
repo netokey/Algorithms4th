@@ -1,7 +1,7 @@
 /*
-This is a top-down merge sort
+The executed result of this program is the solution for exercise 2.2.1
  */
-public class Merge {
+public class EX2_2_1 {
     private static Comparable[] aux;
 
     public static void sort(Comparable[] a) {
@@ -30,6 +30,8 @@ public class Merge {
             else if (less(aux[j], aux[i])) a[k] = aux[j++];
             else a[k] = aux[i++];
         }
+        StdOut.printf("lo=%d\tmid=%d\thi=%d:\t", lo, mid, hi);
+        show(a);
     }
 
     private static boolean less(Comparable v, Comparable w) {
@@ -57,12 +59,7 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-        int N = 10;
-        Integer[] a = new Integer[N];
-        for (int i = 0; i < N; i++) {
-            a[i] = i;
-        }
-        StdRandom.shuffle(a);
+        String[] a = In.readStrings("EX2_2_1Text.txt");
         sort(a);
         assert isSorted(a);
         show(a);

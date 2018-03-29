@@ -1,0 +1,4 @@
+C(N+1)=(N+1)lg(N+1)
+C(N)=NlgN
+C(N+1)-C(N)=(N+1)lg(N+1)-NlgN>(N+1)lgN-NlogN=lgN>=0
+so C(N+1)>C(N)

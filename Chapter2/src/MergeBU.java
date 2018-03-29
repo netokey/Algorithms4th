@@ -1,5 +1,5 @@
 /*
-This is a template for sorting algorithms
+This is a bottom-up merge
  */
 public class MergeBU {
     private static Comparable[] aux;

@@ -1,0 +1,7 @@
+Solution. Yes. If the subarrays are in sorted order, then the inplace merge produces proper output. If one subarray is
+not in sorted order, then its entries will appear in the output in the same order that they appear in the input (with
+entries from the other subarray intermixed).
+CounterExample:
+array1= [0,1,2,3]
+array2= [7,6,5,4]
+the result of merge is [0,1,2,3,7,6,5,4]

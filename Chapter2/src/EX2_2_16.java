@@ -1,20 +1,35 @@
 /*
-This is a top-down merge sort
+This is a bottom-up merge
  */
-public class Merge {
+public class EX2_2_16 {
     private static Comparable[] aux;
 
     public static void sort(Comparable[] a) {
-        aux = new Comparable[a.length];
-        sort(a, 0, a.length - 1);
-    }
-
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
+        int N = a.length;
+        aux = new Comparable[N];
+        int first = 0, second = 0;
+        boolean hasFirst = false;
+        for (int i = 1; i < N; i++) {
+            if (less(a[i], a[i - 1])) {
+                first = i - 1;
+                hasFirst = true;
+                break;
+            }
+        }
+        if (!hasFirst) return;
+        while (second < N - 1) {
+            boolean hasSecond = false;
+            for (int i = first + 2; i < N; i++) {
+                if (less(a[i], a[i - 1])) {
+                    second = i - 1;
+                    hasSecond = true;
+                    break;
+                }
+            }
+            if (!hasSecond) second = N - 1;
+            merge(a, 0, first, second);
+            first = second;
+        }
     }
 
     public static void merge(Comparable[] a, int lo, int mid, int hi) {
@@ -57,7 +72,7 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-        int N = 10;
+        int N = 100;
         Integer[] a = new Integer[N];
         for (int i = 0; i < N; i++) {
             a[i] = i;

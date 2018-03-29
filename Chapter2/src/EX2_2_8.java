@@ -1,7 +1,7 @@
 /*
 This is a top-down merge sort
  */
-public class Merge {
+public class EX2_2_8 {
     private static Comparable[] aux;
 
     public static void sort(Comparable[] a) {
@@ -14,7 +14,9 @@ public class Merge {
         int mid = lo + (hi - lo) / 2;
         sort(a, lo, mid);
         sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
+        if (!less(a[mid], a[mid + 1])) {
+            merge(a, lo, mid, hi);
+        }
     }
 
     public static void merge(Comparable[] a, int lo, int mid, int hi) {
@@ -68,3 +70,8 @@ public class Merge {
         show(a);
     }
 }
+
+/*
+If use merge to sort on a sorted array, it will use 1+2+4+...+2^(n-1) (2^n=N)compares.
+1+2+4+...+2^(n-1)=2^n-1=N-1
+ */
