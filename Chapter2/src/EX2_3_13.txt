@@ -1,0 +1,3 @@
+The best case: lgN
+The average case:
+The worst case: N

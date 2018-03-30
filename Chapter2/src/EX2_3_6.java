@@ -1,7 +1,10 @@
 /*
 This is Quick Sort
+The average of exact comparetimes is less than the approximation, but it is closer while N is increasing.
  */
-public class Quick {
+public class EX2_3_6 {
+    public static int compareTimes;
+
     public static void sort(Comparable[] a) {
         StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
@@ -28,6 +31,7 @@ public class Quick {
     }
 
     private static boolean less(Comparable v, Comparable w) {
+        compareTimes++;
         return v.compareTo(w) < 0;
     }
 
@@ -52,9 +56,22 @@ public class Quick {
     }
 
     public static void main(String[] args) {
-        String[] a = In.readStrings(args[0]);
-        sort(a);
-        assert isSorted(a);
-        show(a);
+        int N = 100000;
+        int T = 100;
+        int sum = 0;
+        Integer[] a = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = i;
+        }
+        for (int i = 0; i < T; i++) {
+            StdRandom.shuffle(a);
+            sort(a);
+            StdOut.println(i + ":" + compareTimes);
+            sum += compareTimes;
+            compareTimes = 0;
+        }
+        StdOut.println("Average Comparetimes:" + sum / T);
+        StdOut.println("Estimated Comparetimes:" + 2 * N * Math.log(N));
+        StdOut.println("Ratio:" + sum / T / (2 * N * Math.log(N)));
     }
 }

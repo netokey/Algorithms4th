@@ -48,7 +48,7 @@ public class VisualNvsTime {
             if (times[i] < mint) mint = times[i];
             else if (times[i] > maxt) maxt = times[i];
         }
-        if (figure == "Log-Log Plot") {
+        if (figure.equals("Log-Log Plot")) {
             XMIN = Math.log(1000) / Math.log(2);
             XMAX = Math.log(NMAX * 1000) / Math.log(2);
             YMIN = Math.log(mint) / Math.log(2);
@@ -57,14 +57,14 @@ public class VisualNvsTime {
             XMIN = 0;
             XMAX = NMAX * 1000;
             YMIN = 0;
-            YMAX = times[times.length - 1];
+            YMAX = maxt;
         }
         int ratio = 20;
         StdDraw.setXscale(XMIN - 2 * (XMAX - XMIN) / ratio, XMAX + (XMAX - XMIN) / ratio);
         StdDraw.setYscale(YMIN - 2 * (YMAX - YMIN) / ratio, YMAX + (YMAX - YMIN) / ratio);
 
 
-        if (figure == "Log-Log Plot") {
+        if (figure.equals("Log-Log Plot")) {
             StdDraw.line(XMIN, YMIN - (YMAX - YMIN) / ratio, XMAX, YMIN - (YMAX - YMIN) / ratio);
             StdDraw.line(XMIN - (XMAX - XMIN) / ratio, YMIN, XMIN - (XMAX - XMIN) / ratio, YMAX);
             for (int i = 1; i <= NMAX; i *= 2) {
@@ -72,7 +72,7 @@ public class VisualNvsTime {
             }
             double YDUR = (maxt - mint) / 10;
             for (double i = mint; i <= maxt; i += YDUR) {
-                StdDraw.text(XMIN - 1.5 * (XMAX - XMIN) / ratio, i, Math.pow(2, i) + "");
+                StdDraw.text(XMIN - 1.5 * (XMAX - XMIN) / ratio, Math.log(i) / Math.log(2), i + "");
             }
         } else {
             StdDraw.line(-XMAX / ratio, 0, XMAX, 0);
@@ -88,7 +88,7 @@ public class VisualNvsTime {
         }
         StdDraw.setPenRadius(.01);
         for (int i = 0; i < times.length; i++) {
-            if (figure == "Log-Log Plot")
+            if (figure.equals("Log-Log Plot"))
                 StdDraw.point(Math.log((i + 1) * 1000) / Math.log(2), Math.log(times[i]) / Math.log(2));
             else StdDraw.point((i + 1) * 1000, times[i]);
         }

@@ -1,9 +1,9 @@
 /*
 This is Quick Sort
  */
-public class Quick {
+public class EX2_3_2 {
     public static void sort(Comparable[] a) {
-        StdRandom.shuffle(a);
+        //StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
     }
 
@@ -32,6 +32,8 @@ public class Quick {
     }
 
     private static void exch(Comparable[] a, int i, int j) {
+        StdOut.printf("exchang %d,%d:", i, j);
+        show(a);
         Comparable t = a[i];
         a[i] = a[j];
         a[j] = t;
@@ -52,9 +54,8 @@ public class Quick {
     }
 
     public static void main(String[] args) {
-        String[] a = In.readStrings(args[0]);
+        String[] a = In.readStrings("EX2_2_2Text.txt");
         sort(a);
-        assert isSorted(a);
         show(a);
     }
 }
