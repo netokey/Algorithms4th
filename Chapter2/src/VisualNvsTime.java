@@ -92,7 +92,5 @@ public class VisualNvsTime {
                 StdDraw.point(Math.log((i + 1) * 1000) / Math.log(2), Math.log(times[i]) / Math.log(2));
             else StdDraw.point((i + 1) * 1000, times[i]);
         }
-
-
     }
 }

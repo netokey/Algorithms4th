@@ -8,6 +8,10 @@ public class SortCompare {
         if (alg.equals("MergeBU")) MergeBU.sort(a);
         if (alg.equals("MergeX")) EX2_2_11.sort(a);
         if (alg.equals("Quick")) Quick.sort(a);
+        if (alg.equals("QuickWithSentinels")) EX2_3_17.sort(a);
+        if (alg.equals("Quick3way")) Quick3way.sort(a);
+        if (alg.equals("Quick3")) EX2_3_18.sort(a);
+        if (alg.equals("Quick5")) EX2_3_19.sort(a);
         //if(alg.equals("Heap")) Heap.sort(a);
         if (alg.equals("MySentinel")) EX2_1_24_MySolution.sort(a);
         if (alg.equals("OfficialSentinel")) EX2_1_24_MySolution.sort(a);

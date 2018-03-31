@@ -1,0 +1,2 @@
+I think the solution should be below.
+choose any nut, use partition() to find the right bolt, and then choose another nut to pair it again.
